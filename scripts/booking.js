@@ -2,11 +2,9 @@
 // useful variables might be: the cost per day, the number of days selected, and elements on the screen that will be clicked or will need to be modified. 
 // Do any of these variables need to be initialized when the page is loaded? 
 // When do they need to be reset or updated?
-
-let costPerDay = 0;
 // let rate = 20;
 let rate = 0
-let numOfDays = 0;
+
 
 const bookPage = document.querySelector(".booking-page");
 const days = document.querySelectorAll(".blue-hover");
@@ -30,29 +28,27 @@ bookPage.addEventListener('click', (e) => {
 function updateCost() {
     // cost.innerHTML = 0
     const selectedDays = document.querySelectorAll('.blue-hover.clicked')
-    const daysCount = selectedDays.length - 1;
+    const daysCount = selectedDays.length;
     cost.innerHTML = daysCount * rate;
 }
 /********* clear days *********/
 // when the clear-button is clicked, the "clicked" class is removed from all days, any other relevant variables are reset, and the calculated cost is set to 0.
-half.addEventListener('click', halfrate);
-
-function halfrate() {
-     
-    rate = 20;
-    // half.toggle('clicked')
-    full.style.background = 'white'
-    updateCost()
-}
-
-full.addEventListener('click', fullrate);
-
-function fullrate() {
+// half.addEventListener('click', halfrate);
+full.onclick = () => {
+    half.classList.remove("clicked");
+    full.classList.add("clicked");
+    full.style.backgroundColor = ' #E5AF42'
+    half.style.backgroundColor = ' white'
     rate = 35
-    full.style.background = '#E5AF42'
-    updateCost();
 }
 
+half.onclick = () => {
+    full.classList.remove("clicked");
+    half.classList.add("clicked");
+    half.style.backgroundColor = ' #E5AF42'
+    full.style.backgroundColor = ' white'
+    rate = 20
+}
 
 clear.addEventListener('click',clearlist);
 
